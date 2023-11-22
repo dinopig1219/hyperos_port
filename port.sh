@@ -681,10 +681,10 @@ fi
 #添加erofs文件系统fstab
 if [ ${pack_type} == "EROFS" ];then
     yellow "检查 vendor fstab.com是否需要添加erofs挂载点"
-    if ! grep -q "erofs" build/portrom/images/vendor/etc/fstab.qcom ; then
+    if ! grep -q "erofs" build/portrom/images/vendor/etc/fstab.default ; then
                for pname in system odm vendor product mi_ext system_ext; do
-                     sed -i "/\/${pname}[[:space:]]\+ext4/{p;s/ext4/erofs/;}" build/portrom/images/vendor/etc/fstab.qcom
-                     added_line=$(sed -n "/\/${pname}[[:space:]]\+erofs/p" build/portrom/images/vendor/etc/fstab.qcom)
+                     sed -i "/\/${pname}[[:space:]]\+ext4/{p;s/ext4/erofs/;}" build/portrom/images/vendor/etc/fstab.default
+                     added_line=$(sed -n "/\/${pname}[[:space:]]\+erofs/p" build/portrom/images/vendor/etc/fstab.default)
     
                     if [ -n "$added_line" ]; then
                         yellow "添加$pname"
