@@ -11,7 +11,7 @@
 # Test Port ROM: Mi 14/Pro OS1.0.9-1.0.25 Mi 13/PRO OS1.0 23.11.09-23.11.10 DEV
 
 
-build_user="Bruce Teng"
+build_user="Dino Pig"
 build_host=$(hostname)
 
 # 底包和移植包为外部参数传入
@@ -337,12 +337,12 @@ if [ -f "${baseMiuiFrameworkResOverlay}" ] && [ -f "${portMiuiFrameworkResOverla
     cp -rf ${baseMiuiFrameworkResOverlay} ${portMiuiFrameworkResOverlay}
 fi
 
-#baseAospWifiResOverlay=$(find build/baserom/images/product -type f -name "AospWifiResOverlay.apk")
-##portAospWifiResOverlay=$(find build/portrom/images/product -type f -name "AospWifiResOverlay.apk")
-#if [ -f ${baseAospWifiResOverlay} ] && [ -f ${portAospWifiResOverlay} ];then
-#    blue "正在替换 [AospWifiResOverlay.apk]"
-#    cp -rf ${baseAospWifiResOverlay} ${portAospWifiResOverlay}
-#fi
+baseAospWifiResOverlay=$(find build/baserom/images/product -type f -name "AospWifiResOverlay.apk")
+portAospWifiResOverlay=$(find build/portrom/images/product -type f -name "AospWifiResOverlay.apk")
+if [ -f ${baseAospWifiResOverlay} ] && [ -f ${portAospWifiResOverlay} ];then
+    blue "正在替换 [AospWifiResOverlay.apk]"
+    cp -rf ${baseAospWifiResOverlay} ${portAospWifiResOverlay}
+fi
 
 baseDevicesAndroidOverlay=$(find build/baserom/images/product -type f -name "DevicesAndroidOverlay.apk")
 portDevicesAndroidOverlay=$(find build/portrom/images/product -type f -name "DevicesAndroidOverlay.apk")
@@ -386,13 +386,13 @@ cp -rf build/baserom/images/product/etc/device_features/* build/portrom/images/p
 if [[ ${is_eu_rom} == "true" ]];then
     cp -rf build/baserom/images/product/etc/device_info.json build/portrom/images/product/etc/device_info.json
 fi
-baseMiSound=$(find build/baserom/images/product -type d -name "MiSound")
-portMiSound=$(find build/portrom/images/product -type d -name "MiSound")
-if [ -d "${baseMiSound}" ] && [ -d "${portMiSound}" ];then
-   blue "正在替换 MiSound" "Replacing stock MiSound"
-   rm -rf ./${portMiSound}/*
-   cp -rf ./${baseMiSound}/* ${portMiSound}/
-fi
+#baseMiSound=$(find build/baserom/images/product -type d -name "MiSound")
+#portMiSound=$(find build/portrom/images/product -type d -name "MiSound")
+#if [ -d "${baseMiSound}" ] && [ -d "${portMiSound}" ];then
+#   blue "正在替换 MiSound" "Replacing stock MiSound"
+#   rm -rf ./${portMiSound}/*
+#   cp -rf ./${baseMiSound}/* ${portMiSound}/
+#fi
 
 # 人脸
 baseMiuiBiometric=$(find build/baserom/images/product/app -type d -name "*Biometric*")
